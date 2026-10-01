@@ -53,6 +53,8 @@ type ProjectView = { title: string; category: string; imageUrl: string } | { tit
 function LazyPoster({ variant, preview, title }: { variant: Variant; preview: string; title: string }) {
   const container = useRef<HTMLDivElement>(null)
   const [nearby, setNearby] = useState(false)
+  const [canRender3D, setCanRender3D] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
     const element = container.current
@@ -62,9 +64,24 @@ function LazyPoster({ variant, preview, title }: { variant: Variant; preview: st
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const canvas = document.createElement('canvas')
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+    setCanRender3D(Boolean(gl))
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const syncMotionPreference = () => setReducedMotion(mediaQuery.matches)
+    syncMotionPreference()
+    mediaQuery.addEventListener?.('change', syncMotionPreference)
+    return () => mediaQuery.removeEventListener?.('change', syncMotionPreference)
+  }, [])
+
+  const shouldRender3D = nearby && canRender3D && !reducedMotion
+
   return <div ref={container} className="h-full w-full">
     <img src={preview} alt={`${title} preview`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
-    {nearby && <div className="absolute inset-0"><Suspense fallback={null}><PosterViewer variant={variant} /></Suspense></div>}
+    {shouldRender3D && <div className="absolute inset-0"><Suspense fallback={null}><PosterViewer variant={variant} /></Suspense></div>}
   </div>
 }
 
