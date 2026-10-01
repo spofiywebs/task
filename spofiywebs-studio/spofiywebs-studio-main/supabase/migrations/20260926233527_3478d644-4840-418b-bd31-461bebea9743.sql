@@ -1,0 +1,11 @@
+CREATE SCHEMA IF NOT EXISTS private;
+CREATE FUNCTION private.has_role(_user_id uuid, _role public.app_role) RETURNS boolean LANGUAGE sql STABLE SECURITY DEFINER SET search_path = public AS $$ SELECT EXISTS (SELECT 1 FROM public.user_roles WHERE user_id = _user_id AND role = _role) $$;
+GRANT USAGE ON SCHEMA private TO authenticated;
+GRANT EXECUTE ON FUNCTION private.has_role(uuid, public.app_role) TO authenticated;
+ALTER POLICY "Owner edits studio content" ON public.site_content USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+ALTER POLICY "Owner edits portfolio" ON public.portfolio USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+ALTER POLICY "Owner reads messages" ON public.inquiries USING (private.has_role(auth.uid(),'admin'));
+ALTER POLICY "Owner replies messages" ON public.inquiries USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+ALTER POLICY "Owner uploads work" ON storage.objects WITH CHECK (bucket_id = 'portfolio' AND private.has_role(auth.uid(),'admin'));
+ALTER POLICY "Owner manages work files" ON storage.objects USING (bucket_id = 'portfolio' AND private.has_role(auth.uid(),'admin')) WITH CHECK (bucket_id = 'portfolio' AND private.has_role(auth.uid(),'admin'));
+DROP FUNCTION public.has_role(uuid, public.app_role);

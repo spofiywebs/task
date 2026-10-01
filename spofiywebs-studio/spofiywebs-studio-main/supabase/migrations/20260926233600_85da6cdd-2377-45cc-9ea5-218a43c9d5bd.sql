@@ -1,0 +1,1 @@
+CREATE POLICY "Visitors view portfolio images" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'portfolio' AND EXISTS (SELECT 1 FROM public.portfolio WHERE image_path = name));

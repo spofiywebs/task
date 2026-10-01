@@ -1,0 +1,12 @@
+# spofiywebs
+- [x] Build the scrolling portfolio and use the uploaded video.
+- [x] Add private owner content, work upload, and inquiry management.
+- [ ] Verify inquiry submission and reply access end to end.
+- [x] Place the uploaded 3D poster in the work section and verify desktop/mobile viewing.
+- [x] Replace the contact message form with a corner chat box using private visitor replies.
+- [x] Add the new upload as a work titled “3D poster” alongside the existing 3D work.
+- [x] Let visitors take their saved chat message to the studio's WhatsApp number.
+- [x] Make scrolling through the 3D gallery smooth on desktop and touchscreens.
+- [x] Add the two supplied drawings as featured portfolio pieces and create a restrained blood-rain backdrop behind the work gallery.
+- [x] Keep the site light to load with small previews and defer 3D models and video until needed.
+- [x] Add an easy View option to every project.

@@ -1,0 +1,7 @@
+- Keep the public portfolio on `/` as a single scrolling page with anchor navigation because this studio explicitly requested that format.
+- Keep owner controls on `/studio`; owner access is granted only after server-side verification of the confirmed studio email, because client-side identity checks are insufficient.
+- Store visitor receipt tokens only in the visitor's browser and their hashes in Cloud, because replies must remain private without visitor accounts.
+- Store owner-uploaded artwork in private Cloud storage and serve temporary signed links, because public buckets are disabled in this workspace.
+- Show the visitor's uploaded 3D poster through a client-mounted viewer backed by a CDN asset pointer, because WebGL needs the browser and binary uploads should not enter the repository.
+- Serve visitor-supplied portfolio images through CDN asset pointers, because gallery media should remain outside the source repository.
+- Defer 3D viewers until their cards approach view and show compact still previews first, because loading all models and WebGL canvases at startup slows the portfolio.
