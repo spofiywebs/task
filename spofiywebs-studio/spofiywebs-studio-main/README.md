@@ -29,18 +29,6 @@ Admin panel—only visible to you (the owner), with three tabs: edit hero words/
 Contact form → your Gmail—a static site genuinely can't auto-send email to spofiywebs37@gmail.com; there's no server to do that from. What I built instead: messages get saved and show up in your Admin → Messages tab, plus an "Email instead" button that opens a pre-addressed mailto: to your Gmail directly. If you want true auto-forwarding to Gmail, that needs a form service (like Formspree) connected with your own account—happy to wire that in if you set one up.
 The Instagram link points to instagram.com/spofiywebs (I dropped the share-sheet tracking params; they're not needed for a normal link). " A monstrous, muscular humanoid titan figure standing in a dramatic power pose, arms raised and flexed. Cracked, armor-like plating covers the torso and limbs like weathered stone or obsidian. Gaunt, sunken, intense eyes and pale, windswept hair partially covering the face. Wisps of steam and smoke rising from the shoulders and background. Rendered in high-contrast black-and-white pencil sketch style with heavy cross-hatching and rough, energetic linework—the same raw, unfinished sketchbook feel as your other pieces."
 
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://spofiywebs-studio.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/53ce112f-741e-41ef-9ce4-4d31c881754c).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
 ## Development
 
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
